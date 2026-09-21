@@ -397,18 +397,76 @@
                 </div>
             </div>
 
-            <div class="bg-slate-950 border border-slate-800 rounded-xl p-6 text-center">
-                <h3 class="font-bold text-teal-400 text-sm mb-3 uppercase tracking-wider">RINGKASAN LAYER 1-9</h3>
-                <p class="text-xs text-slate-300 max-w-3xl mx-auto leading-relaxed">
-                    Layer 1 menyediakan server dan container. Layer 2 mengamankan serta mengarahkan trafik. Layer 3 menjalankan aplikasi. Layer 4 menyediakan database internal. Layer 5 menangani asset dan WordPress. Layer 6 menyiapkan billing serta provisioning. Layer 7 memisahkan tenant dan mengotomatisasi DNS. Layer 8 mengatur CI/CD dan AI. Layer 9 memantau seluruh sistem dan mengirim alert melalui Telegram.
-                </p>
-                <p class="text-xs text-slate-300 max-w-3xl mx-auto leading-relaxed mt-3">
-                    <strong>Urutan mulai:</strong> selesaikan Layer 1-3 untuk menjalankan aplikasi pribadi, lanjutkan Layer 4-5 untuk data dan asset, aktifkan Layer 9 untuk keandalan, lalu siapkan Layer 6-8 sebagai modul komersial yang dapat diaktifkan saat mulai menerima klien.
+            <div class="bg-slate-950 border border-slate-800 rounded-xl p-6">
+                <div class="flex items-center justify-between gap-4 mb-4">
+                    <h3 class="font-bold text-teal-400 text-sm uppercase tracking-wider">RINGKASAN PER LAYER</h3>
+                    <div class="flex gap-2">
+                        <button type="button" class="w-9 h-9 rounded-lg border border-slate-700 text-slate-300 hover:border-teal-400 hover:text-teal-400 transition" aria-label="Layer sebelumnya" onclick="moveLayerSummary(-1)">&#8592;</button>
+                        <button type="button" class="w-9 h-9 rounded-lg border border-slate-700 text-slate-300 hover:border-teal-400 hover:text-teal-400 transition" aria-label="Layer berikutnya" onclick="moveLayerSummary(1)">&#8594;</button>
+                    </div>
+                </div>
+                <div id="layer-summary-carousel" class="flex gap-4 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-3">
+                    <article class="min-w-[85%] md:min-w-[31%] snap-start bg-slate-900 border border-blue-500/40 rounded-xl p-5">
+                        <div class="text-blue-400 font-extrabold text-lg mb-2">Layer 1</div>
+                        <h4 class="font-bold text-white mb-2">Fondasi Server</h4>
+                        <p class="text-xs text-slate-300 leading-relaxed">OS, Proxmox atau VPS, Docker, resource limit, SSH key, user non-root, dan firewall dasar sebagai fondasi host.</p>
+                    </article>
+                    <article class="min-w-[85%] md:min-w-[31%] snap-start bg-slate-900 border border-cyan-500/40 rounded-xl p-5">
+                        <div class="text-cyan-400 font-extrabold text-lg mb-2">Layer 2</div>
+                        <h4 class="font-bold text-white mb-2">Nginx & Security</h4>
+                        <p class="text-xs text-slate-300 leading-relaxed">Reverse proxy, HTTPS, security headers, rate limiting, Fail2ban, UFW, dan WAF sebagai gerbang trafik.</p>
+                    </article>
+                    <article class="min-w-[85%] md:min-w-[31%] snap-start bg-slate-900 border border-purple-500/40 rounded-xl p-5">
+                        <div class="text-purple-400 font-extrabold text-lg mb-2">Layer 3</div>
+                        <h4 class="font-bold text-white mb-2">Runtime & Aplikasi</h4>
+                        <p class="text-xs text-slate-300 leading-relaxed">Dockerfile, Docker Compose, .env, dan routing domain untuk menjalankan aplikasi pribadi melalui HTTPS.</p>
+                    </article>
+                    <article class="min-w-[85%] md:min-w-[31%] snap-start bg-slate-900 border border-indigo-500/40 rounded-xl p-5">
+                        <div class="text-indigo-400 font-extrabold text-lg mb-2">Layer 4</div>
+                        <h4 class="font-bold text-white mb-2">Database Internal</h4>
+                        <p class="text-xs text-slate-300 leading-relaxed">PostgreSQL, MySQL, Redis, atau MongoDB di network internal tanpa membuka port database ke internet.</p>
+                    </article>
+                    <article class="min-w-[85%] md:min-w-[31%] snap-start bg-slate-900 border border-pink-500/40 rounded-xl p-5">
+                        <div class="text-pink-400 font-extrabold text-lg mb-2">Layer 5</div>
+                        <h4 class="font-bold text-white mb-2">Asset & WordPress</h4>
+                        <p class="text-xs text-slate-300 leading-relaxed">Volume persisten, static files, media, cache, dan WordPress agar data tetap tersedia saat container diperbarui.</p>
+                    </article>
+                    <article class="min-w-[85%] md:min-w-[31%] snap-start bg-slate-900 border border-amber-500/40 rounded-xl p-5">
+                        <div class="text-amber-400 font-extrabold text-lg mb-2">Layer 6</div>
+                        <h4 class="font-bold text-white mb-2">Billing & Provisioning</h4>
+                        <p class="text-xs text-slate-300 leading-relaxed">Modul komersial opsional untuk paket, billing, payment gateway, webhook, quota, dan lifecycle tenant.</p>
+                    </article>
+                    <article class="min-w-[85%] md:min-w-[31%] snap-start bg-slate-900 border border-teal-500/40 rounded-xl p-5">
+                        <div class="text-teal-400 font-extrabold text-lg mb-2">Layer 7</div>
+                        <h4 class="font-bold text-white mb-2">Tenant & DNS</h4>
+                        <p class="text-xs text-slate-300 leading-relaxed">Subdomain, network dan quota per tenant, Cloudflare API, serta aturan akses untuk skala klien.</p>
+                    </article>
+                    <article class="min-w-[85%] md:min-w-[31%] snap-start bg-slate-900 border border-emerald-500/40 rounded-xl p-5">
+                        <div class="text-emerald-400 font-extrabold text-lg mb-2">Layer 8</div>
+                        <h4 class="font-bold text-white mb-2">CI/CD & AI</h4>
+                        <p class="text-xs text-slate-300 leading-relaxed">Git deployment, testing, rollback, dan AI tools untuk rilis yang konsisten dan mudah dikembangkan.</p>
+                    </article>
+                    <article class="min-w-[85%] md:min-w-[31%] snap-start bg-slate-900 border border-sky-500/40 rounded-xl p-5">
+                        <div class="text-sky-400 font-extrabold text-lg mb-2">Layer 9</div>
+                        <h4 class="font-bold text-white mb-2">Monitoring & Telegram</h4>
+                        <p class="text-xs text-slate-300 leading-relaxed">Health check, uptime, CPU, RAM, disk, SSL, alert Telegram, dan command allowlist untuk operasi aman.</p>
+                    </article>
+                </div>
+                <p class="text-xs text-slate-300 max-w-3xl mx-auto text-center leading-relaxed mt-4">
+                    <strong>Urutan mulai:</strong> Layer 1-3 untuk menjalankan aplikasi pribadi, Layer 4-5 untuk data dan asset, Layer 9 untuk keandalan, lalu Layer 6-8 sebagai modul komersial.
                 </p>
             </div>
         </div>
 
     </div>
+
+    <script>
+        function moveLayerSummary(direction) {
+            const carousel = document.getElementById('layer-summary-carousel');
+            const card = carousel.querySelector('article');
+            carousel.scrollBy({ left: direction * (card.offsetWidth + 16), behavior: 'smooth' });
+        }
+    </script>
 
 </body>
 </html>
