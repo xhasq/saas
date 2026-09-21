@@ -10,6 +10,8 @@
         body { font-family: 'Inter', sans-serif; }
         h1, h2, h3 { font-weight: 800; }
         strong { font-weight: 800; }
+        .hide-scrollbar { scrollbar-width: none; -ms-overflow-style: none; }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
     </style>
 </head>
 <body class="bg-slate-950 text-slate-100 min-h-screen p-6 md:p-12">
@@ -405,7 +407,7 @@
                         <button type="button" class="w-9 h-9 rounded-lg border border-slate-700 text-slate-300 hover:border-teal-400 hover:text-teal-400 transition" aria-label="Layer berikutnya" onclick="moveLayerSummary(1)">&#8594;</button>
                     </div>
                 </div>
-                <div id="layer-summary-carousel" class="flex gap-4 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-3">
+                <div id="layer-summary-carousel" class="hide-scrollbar flex gap-4 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-3">
                     <article class="min-w-[85%] md:min-w-[31%] snap-start bg-slate-900 border border-blue-500/40 rounded-xl p-5">
                         <div class="text-blue-400 font-extrabold text-lg mb-2">Layer 1</div>
                         <h4 class="font-bold text-white mb-2">Fondasi Server</h4>
@@ -452,9 +454,27 @@
                         <p class="text-xs text-slate-300 leading-relaxed">Health check, uptime, CPU, RAM, disk, SSL, alert Telegram, dan command allowlist untuk operasi aman.</p>
                     </article>
                 </div>
-                <p class="text-xs text-slate-300 max-w-3xl mx-auto text-center leading-relaxed mt-4">
-                    <strong>Urutan mulai:</strong> Layer 1-3 untuk menjalankan aplikasi pribadi, Layer 4-5 untuk data dan asset, Layer 9 untuk keandalan, lalu Layer 6-8 sebagai modul komersial.
-                </p>
+                <div class="mt-5">
+                    <h4 class="font-bold text-center text-sky-400 text-sm uppercase tracking-wider mb-3">URUTAN MULAI</h4>
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-3">
+                        <div class="bg-slate-900 border border-blue-500/30 rounded-lg p-4">
+                            <div class="text-blue-400 font-extrabold text-sm mb-1">01. Fondasi</div>
+                            <p class="text-xs text-slate-300 leading-relaxed">Selesaikan Layer 1-2 untuk server, Docker, domain, HTTPS, dan keamanan dasar.</p>
+                        </div>
+                        <div class="bg-slate-900 border border-purple-500/30 rounded-lg p-4">
+                            <div class="text-purple-400 font-extrabold text-sm mb-1">02. Aplikasi</div>
+                            <p class="text-xs text-slate-300 leading-relaxed">Gunakan Layer 3-5 untuk runtime, database, asset, dan WordPress bila diperlukan.</p>
+                        </div>
+                        <div class="bg-slate-900 border border-sky-500/30 rounded-lg p-4">
+                            <div class="text-sky-400 font-extrabold text-sm mb-1">03. Keandalan</div>
+                            <p class="text-xs text-slate-300 leading-relaxed">Aktifkan Layer 9 untuk health check, monitoring, backup alert, dan Telegram.</p>
+                        </div>
+                        <div class="bg-slate-900 border border-amber-500/30 rounded-lg p-4">
+                            <div class="text-amber-400 font-extrabold text-sm mb-1">04. Komersial</div>
+                            <p class="text-xs text-slate-300 leading-relaxed">Siapkan Layer 6-8 saat mulai menerima klien: billing, tenant, DNS, CI/CD, dan AI.</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
